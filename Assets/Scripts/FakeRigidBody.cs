@@ -59,7 +59,12 @@ public class FakeRigidBody : MonoBehaviour {
 
     public bool HasEffect(string id)
     {
-        return movementEffects.Find(effect => { return effect.id == id; }) != null;
+        return GetEffect(id) != null;
+    }
+
+    public MovementEffect GetEffect(string id)
+    {
+        return movementEffects.Find(effect => { return effect.id == id; });
     }
 
     private void FixedUpdate()

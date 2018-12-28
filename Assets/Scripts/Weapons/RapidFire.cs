@@ -5,8 +5,8 @@ using UnityEngine;
 public class RapidFire : MonoBehaviour
 {
     public float fireRateMod = 0.3f;
-    public void InitializeWeaponComponents()
+    public void InitializeWeapon(GameObject player)
     {
-        FindObjectOfType<PlayerShooting>().currentEffects.fireRateMod = fireRateMod;
+       player.GetComponent<PlayerShooting>().currentEffects.fireRateMod = fireRateMod;
     }
 }

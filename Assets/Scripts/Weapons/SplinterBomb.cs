@@ -27,7 +27,7 @@ public class SplinterBomb : MonoBehaviour {
             bull.GetComponent<Transform>().localScale *= 0.5f;
             Destroy(bull.GetComponentInChildren<SplinterBomb>());
             bull.GetComponent<BulletLogic>().Initialize(transform.parent.position, fireDirection, GetComponentInParent<BulletLogic>().creator);
-            bull.BroadcastMessage("InitializeWeaponComponents");
+            bull.BroadcastMessage("InitializeWeaponComponents", SendMessageOptions.DontRequireReceiver);
             bull.GetComponent<BulletLogic>().damage = Mathf.Min(1, bull.GetComponent<BulletLogic>().damage / 2);
         }
         Destroy(this);

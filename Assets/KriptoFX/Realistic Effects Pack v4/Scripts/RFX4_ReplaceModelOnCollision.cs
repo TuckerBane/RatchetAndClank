@@ -19,11 +19,11 @@ public class RFX4_ReplaceModelOnCollision : MonoBehaviour
             if (mesh != null)
                 mesh.enabled = false;
             var rb = GetComponent<Rigidbody>();
-            rb.isKinematic = true;
-            rb.detectCollisions = false;
+            //rb.isKinematic = true;
+            //rb.detectCollisions = false;
         }
     }
-
+    /*
     void OnEnable()
     {
         isCollided = false;
@@ -32,7 +32,8 @@ public class RFX4_ReplaceModelOnCollision : MonoBehaviour
         if (mesh!=null)
             mesh.enabled = true;
         var rb = GetComponent<Rigidbody>();
-        rb.isKinematic = false;
-        rb.detectCollisions = true;
+        //rb.isKinematic = false;
+        //rb.detectCollisions = true;
     }
+    */
 }

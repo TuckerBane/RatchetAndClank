@@ -5,42 +5,70 @@ using UnityEngine;
 public class Returning : MonoBehaviour {
 
     private GameObject bull;
+    private GameObject player;
 
     public int remainingBounces = 1;
 
     private bool returning = false;
+    private Vector3 outgoingVelocity;
     public float speed = 15.0f;
-    public Timer returnProgress;
-    public AnimationCurve returnSpeed;
+    public Timer speedTimer;
+    public Timer autoReturnTimer;
+    public AnimationCurve speedCurve;
 
     private void Awake()
     {
-        bull = transform.parent.gameObject;
+
     }
 
     public void InitializeWeaponComponents()
     {
+        speedTimer.reset();
+        autoReturnTimer.reset();
+        bull = transform.parent.gameObject;
+        player = FindObjectOfType<PlayerMovement>().gameObject;
         Destroy(GetComponentInParent<DieInstantly>());
         GetComponentInParent<FakeRigidBody>().AddEffect(new MovementEffect(Vector3.zero, float.MaxValue, null, ReturnVelocityGetter, "Returning"));
+        outgoingVelocity = GetComponentInParent<FakeRigidBody>().GetEffect("BulletLogic").velocity.normalized;
         GetComponentInParent<FakeRigidBody>().RemoveEffect("BulletLogic");
     }
 
     public Vector3 ReturnVelocityGetter(Vector3 prev)
     {
-        Vector3 toPlayer = FindObjectOfType<PlayerMovement>().transform.position - transform.parent.position;
+        Vector3 toPlayer = player.transform.position - transform.parent.position;
         toPlayer.Normalize();
         if (!returning)
-            toPlayer = -toPlayer;
-        return toPlayer * speed * returnSpeed.Evaluate(returnProgress.interpolationValue());
+            toPlayer = outgoingVelocity;
+        return toPlayer * speed * speedCurve.Evaluate(speedTimer.interpolationValue());
+    }
+
+    private void Update()
+    {
+        if(!returning && autoReturnTimer.resetIfDone())
+        {
+            if (remainingBounces > 0)
+            {
+                TurnAround();
+            }
+        }
+    }
+
+    private void TurnAround()
+    {
+        autoReturnTimer.reset();
+        speedTimer = new Timer(0.5f);
+        --remainingBounces;
+        returning = !returning;
     }
 
     public void BulletDie(Collision killedBy)
     {
+        if (killedBy.gameObject == player && !returning)
+            return;
+
         if(remainingBounces > 0)
         {
-            returnProgress = new Timer(0.5f);
-            --remainingBounces;
-            returning = !returning;
+            TurnAround();
         }
         else
         {

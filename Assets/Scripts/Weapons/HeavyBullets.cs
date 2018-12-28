@@ -6,7 +6,7 @@ public class HeavyBullets : MonoBehaviour
 {
     public float duration = 2.0f;
     public float speedMod = 0.5f;
-    public AnimationCurve speedCurve = AnimationCurve.Constant(0, 1, 1);
+    public AnimationCurve pushSpeedCurve = AnimationCurve.Constant(0, 1, 1);
 
     private Vector3 oldVelocity;
 
@@ -14,7 +14,7 @@ public class HeavyBullets : MonoBehaviour
     {
         if(killedBy.gameObject.GetComponent<FakeRigidBody>())
         {
-            killedBy.gameObject.GetComponent<FakeRigidBody>().AddEffect(new MovementEffect(oldVelocity * speedMod, duration, speedCurve, null, "HeavyBullets"));
+            killedBy.gameObject.GetComponent<FakeRigidBody>().AddEffect(new MovementEffect(oldVelocity * speedMod, duration, pushSpeedCurve, null, "HeavyBullets"));
         }
     }
 

@@ -33,7 +33,6 @@ public class SimpleEnemyMovement : MonoBehaviour {
                 toPlayer = toPlayer.Rotate2D(-90);
                 break;
         }
-
         GetComponent<RotationHandler>().AddOrUpdateRotation("SimpleEnemyMovement",toPlayer.AsRotation2d());
         return toPlayer * speed;
     }
