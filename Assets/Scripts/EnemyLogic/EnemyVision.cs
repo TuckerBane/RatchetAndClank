@@ -26,4 +26,9 @@ public class EnemyVision : MonoBehaviour {
         }
         
     }
+
+    public Vector3 ToTarget()
+    {
+        return (target.transform.position - transform.position).normalized;
+    }
 }

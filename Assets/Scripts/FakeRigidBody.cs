@@ -12,7 +12,7 @@ public class MovementEffect
     public VelocityCalculator velocityCalculator;
     public string id;
 
-    public MovementEffect(Vector3 velocity, float duration, AnimationCurve powerCurve = null, VelocityCalculator velocityCalculator = null, string id = null)
+    public MovementEffect(Vector3 velocity, float duration = float.MaxValue, AnimationCurve powerCurve = null, VelocityCalculator velocityCalculator = null, string id = null)
     {
         this.velocity = velocity;
         this.duration = new Timer(duration);
