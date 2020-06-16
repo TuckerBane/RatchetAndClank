@@ -88,7 +88,8 @@ public class PlayerShooting : MonoBehaviour {
         // can't send messages to archetypes
         // maybe do this on shoot instead if this caused problems
         GameObject tempBul = GetUninitializedBullet();
-        tempBul.BroadcastMessage("InitializeWeapon", gameObject, SendMessageOptions.DontRequireReceiver);
+        foreach (BulletComponentBase comp in tempBul.GetComponents<BulletComponentBase>())
+            comp.InitializeWeapon(gameObject);
         DestroyImmediate(tempBul, false);
     }
 
@@ -110,7 +111,8 @@ public class PlayerShooting : MonoBehaviour {
             Vector3 toMouse = theMouse.VecToMouse(gameObject);
             GameObject bull = GetUninitializedBullet();
             bull.GetComponent<BulletLogic>().Initialize(transform.position, toMouse, gameObject);
-            bull.BroadcastMessage("InitializeWeaponComponents", SendMessageOptions.DontRequireReceiver);
+            foreach (BulletComponentBase comp in bull.GetComponents<BulletComponentBase>())
+                comp.InitializeWeaponComponents();
         }
 	}
 }

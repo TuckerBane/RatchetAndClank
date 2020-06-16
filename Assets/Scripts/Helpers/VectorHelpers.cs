@@ -14,4 +14,16 @@ public static class VectorHelpers {
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         return q;
     }
+
+    public static float DistanceBetween(Vector3 t1, Vector3 t2)
+    {
+        return (t1 - t2).magnitude;
+    }
+
+    public static float DistanceBetween(Transform t1, Transform t2)
+    {
+        return DistanceBetween(t1.position, t2.position);
+    }
+
+
 }

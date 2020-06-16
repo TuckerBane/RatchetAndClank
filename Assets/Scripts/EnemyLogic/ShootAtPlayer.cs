@@ -26,7 +26,8 @@ public class ShootAtPlayer : MonoBehaviour {
             toTarget.Normalize();
             GameObject bull = Instantiate(bullet, transform.position, transform.rotation);
             bull.GetComponent<BulletLogic>().Initialize(transform.position, toTarget, gameObject);
-            bull.BroadcastMessage("InitializeWeaponComponents", SendMessageOptions.DontRequireReceiver);
+            foreach (BulletComponentBase comp in bull.GetComponents<BulletComponentBase>())
+                comp.InitializeWeaponComponents();
         }
 	}
 }

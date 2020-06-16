@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RapidFire : MonoBehaviour
+public class RapidFire : BulletComponentBase
 {
     public float fireRateMod = 0.3f;
-    public void InitializeWeapon(GameObject player)
+    public override void InitializeWeapon(GameObject player)
     {
        player.GetComponent<PlayerShooting>().currentEffects.fireRateMod = fireRateMod;
     }

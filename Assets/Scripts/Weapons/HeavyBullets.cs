@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavyBullets : MonoBehaviour
+public class HeavyBullets : BulletComponentBase
 {
     public float duration = 2.0f;
     public float speedMod = 0.5f;
@@ -10,7 +10,7 @@ public class HeavyBullets : MonoBehaviour
 
     private Vector3 oldVelocity;
 
-    public void BulletDie(Collision killedBy)
+    public override void BulletDie(Collision killedBy)
     {
         if(killedBy.gameObject.GetComponent<FakeRigidBody>())
         {

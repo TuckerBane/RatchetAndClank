@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SplinterBomb : MonoBehaviour {
+public class SplinterBomb :  BulletComponentBase
+{
 
     public float minAngleDeg = 10.0f;
     public float maxAngleDeg = 30.0f;
     public int splinters = 3;
 
-    public void BulletDie(Collision killedBy)
+    public override void BulletDie(Collision killedBy) 
     {
         if(killedBy == null)
         {
@@ -27,7 +28,9 @@ public class SplinterBomb : MonoBehaviour {
             bull.GetComponent<Transform>().localScale *= 0.5f;
             Destroy(bull.GetComponentInChildren<SplinterBomb>());
             bull.GetComponent<BulletLogic>().Initialize(transform.parent.position, fireDirection, GetComponentInParent<BulletLogic>().creator);
-            bull.BroadcastMessage("InitializeWeaponComponents", SendMessageOptions.DontRequireReceiver);
+
+            foreach (BulletComponentBase comp in bull.GetComponents<BulletComponentBase>())
+                comp.InitializeWeaponComponents();
             bull.GetComponent<BulletLogic>().damage = Mathf.Min(1, bull.GetComponent<BulletLogic>().damage / 2);
         }
         Destroy(this);

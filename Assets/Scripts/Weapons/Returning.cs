@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Returning : MonoBehaviour {
+public class Returning : BulletComponentBase {
 
     private GameObject bull;
     private GameObject player;
@@ -21,7 +21,7 @@ public class Returning : MonoBehaviour {
 
     }
 
-    public void InitializeWeaponComponents()
+    public override void InitializeWeaponComponents()
     {
         speedTimer.reset();
         autoReturnTimer.reset();
