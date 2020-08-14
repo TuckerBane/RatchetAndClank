@@ -61,7 +61,7 @@ public class Returning : BulletComponentBase {
         returning = !returning;
     }
 
-    public void BulletDie(Collision killedBy)
+    public override void BulletDie(Collision killedBy)
     {
         if (killedBy.gameObject == player && !returning)
             return;

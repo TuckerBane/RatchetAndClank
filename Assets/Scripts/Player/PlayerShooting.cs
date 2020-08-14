@@ -24,6 +24,7 @@ public class PlayerShooting : MonoBehaviour {
     public WeaponVersionTracker versionTracker;
     public List<LingeringBulletMod> lingeringEffects;
     public GameObject bullet;
+    public GameObject baseMode;
     public Timer weaponSwapCooldown;
     public float lingeringEffectDuration = 3.0f;
     public bool allowMultipleLingeringEffects = false;
@@ -63,7 +64,10 @@ public class PlayerShooting : MonoBehaviour {
     {
         GameObject bull = Instantiate(bullet, transform.position, bullet.transform.rotation);
         List<LingeringBulletMod> toRemove = new List<LingeringBulletMod>();
-        foreach(LingeringBulletMod effect in lingeringEffects)
+        if(baseMode)
+            Instantiate(baseMode).transform.parent = bull.transform;
+
+        foreach (LingeringBulletMod effect in lingeringEffects)
         {
             if (!effect.time.isDone())
                 Instantiate(effect.mod).transform.parent = bull.transform;
@@ -74,21 +78,36 @@ public class PlayerShooting : MonoBehaviour {
         return bull;
     }
 
+    public void AddLingeringEffect(LingeringBulletMod timedMod)
+    {
+        if (timedMod != null)
+        { // some weapons may not have a lingering effect
+            if (!allowMultipleLingeringEffects)
+                lingeringEffects.Clear();
+            lingeringEffects.Add(timedMod);
+        }
+        else
+            Debug.Log("tried to add a null weapon mod. That's no good. PlayerShooting.cs");
+    }
+
     public void SwitchToWeapon(int bulletIndex)
     {
         LingeringBulletMod newMod = new LingeringBulletMod(versionTracker.weaponVersions[currentBulletIndex].array[(int)PowerLevel.Lesser], new Timer(lingeringEffectDuration) );
-        if (newMod.mod) // some weapons may not have a lingering effect
-            lingeringEffects.Add(newMod);
+        if (newMod.mod)
+        { // some weapons may not have a lingering effect
+            AddLingeringEffect(newMod);
+        }
         else
-            Debug.Log(((BulletIndexe)bulletIndex).ToString() + "doesn't have a lingering effect. Just saying, maybe it should?");
+            Debug.Log(((BulletIndex)bulletIndex).ToString() + "doesn't have a lingering effect. Just saying, maybe it should?");
 
         currentBulletIndex = bulletIndex;
         currentEffects = defualtEffects;
-        bullet = versionTracker.weaponVersions[bulletIndex].array[(int)PowerLevel.Normal];
+        bullet = versionTracker.weaponVersions[bulletIndex].bulletBase;
+        baseMode = versionTracker.weaponVersions[bulletIndex].array[(int)PowerLevel.Normal];
         // can't send messages to archetypes
         // maybe do this on shoot instead if this caused problems
         GameObject tempBul = GetUninitializedBullet();
-        foreach (BulletComponentBase comp in tempBul.GetComponents<BulletComponentBase>())
+        foreach (BulletComponentBase comp in tempBul.GetComponentsInChildren<BulletComponentBase>())
             comp.InitializeWeapon(gameObject);
         DestroyImmediate(tempBul, false);
     }
@@ -103,7 +122,7 @@ public class PlayerShooting : MonoBehaviour {
             }
         }
 
-        GetComponent<RotationHandler>().AddOrUpdateRotation("PlayerShooting",theMouse.VecToMouse(gameObject).AsRotation2d());
+        GetComponent<RotationHandler>().AddOrUpdateRotation("PlayerShooting", theMouse.VecToMouse(gameObject).AsRotation2d());
 
         if (timeOfLastShot + shotCooldown * currentEffects.fireRateMod <= Time.time && Input.GetMouseButton(0))
         {
@@ -111,7 +130,7 @@ public class PlayerShooting : MonoBehaviour {
             Vector3 toMouse = theMouse.VecToMouse(gameObject);
             GameObject bull = GetUninitializedBullet();
             bull.GetComponent<BulletLogic>().Initialize(transform.position, toMouse, gameObject);
-            foreach (BulletComponentBase comp in bull.GetComponents<BulletComponentBase>())
+            foreach (BulletComponentBase comp in bull.GetComponentsInChildren<BulletComponentBase>())
                 comp.InitializeWeaponComponents();
         }
 	}

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Array2D
+public class WeaponModVersions
 {
+    public GameObject bulletBase;
     public GameObject[] array;
 }
 
-enum BulletIndexe
+enum BulletIndex
 {
     RapidFire = 0,
     Boomarang = 1,
@@ -25,5 +26,5 @@ enum PowerLevel
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/WeaponVersionTracker", order = 1)]
 public class WeaponVersionTracker : ScriptableObject {
-    public Array2D[] weaponVersions;
+    public WeaponModVersions[] weaponVersions;
 }

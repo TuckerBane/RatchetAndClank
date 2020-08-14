@@ -25,8 +25,12 @@ public class BulletLogic : MonoBehaviour {
         if (other.gameObject != gameObject)
         {
             other.gameObject.SendMessage("TakeDamage", new DamageInfo(damage, gameObject, creator), SendMessageOptions.DontRequireReceiver);
-            foreach (BulletComponentBase bulletComponent in gameObject.GetComponents<BulletComponentBase>())
+            foreach (BulletComponentBase bulletComponent in gameObject.GetComponentsInChildren<BulletComponentBase>())
                 bulletComponent.BulletDie(other);
+            if(TryGetComponent(out DieInstantly component))
+            {
+                component.BulletDie(other);
+            }
         }
     }
 

@@ -29,7 +29,7 @@ public class SplinterBomb :  BulletComponentBase
             Destroy(bull.GetComponentInChildren<SplinterBomb>());
             bull.GetComponent<BulletLogic>().Initialize(transform.parent.position, fireDirection, GetComponentInParent<BulletLogic>().creator);
 
-            foreach (BulletComponentBase comp in bull.GetComponents<BulletComponentBase>())
+            foreach (BulletComponentBase comp in bull.GetComponentsInChildren<BulletComponentBase>())
                 comp.InitializeWeaponComponents();
             bull.GetComponent<BulletLogic>().damage = Mathf.Min(1, bull.GetComponent<BulletLogic>().damage / 2);
         }

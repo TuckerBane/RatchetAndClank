@@ -26,4 +26,9 @@ public static class VectorHelpers {
     }
 
 
+    public static Vector3 Times(this Vector3 vec, float f)
+    {
+        return new Vector3(vec.x * f, vec.y * f, vec.z * f);
+    }
+
 }

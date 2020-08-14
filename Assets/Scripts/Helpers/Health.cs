@@ -29,9 +29,11 @@ public class DeathInfo
 public class Health : MonoBehaviour {
 
     public bool canBeInvincible = false;
+    public bool ignoreDamageValues = false;
     public Timer invincibilityCooldown;
     public int health = 3;
     public int startingHealth = 30;
+    public int pointValue = 0;
     // concider making a system for color effects
     public Color damagedColor = Color.yellow;
     public AnimationCurve damagedColorFlashCurve = AnimationCurve.EaseInOut(0,0,1,0);
@@ -55,9 +57,16 @@ public class Health : MonoBehaviour {
         if (!invincibilityCooldown.resetIfDone() && canBeInvincible)
             return false;
 
-        health -= damageInfo.damage;
+        if (ignoreDamageValues)
+            --health;
+        else
+            health -= damageInfo.damage;
+
         if (health <= 0)
-            gameObject.BroadcastMessage("Die", damageInfo);
+        {
+            FindObjectOfType<ScoreDisplay>().AddPoints(pointValue);
+            gameObject.BroadcastMessage("Die", damageInfo, SendMessageOptions.DontRequireReceiver);
+        }
         return true;
     }
 }

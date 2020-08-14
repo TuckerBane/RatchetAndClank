@@ -10,11 +10,11 @@ public class SpawnPrefab : MonoBehaviour {
     public float spawnTimer = 3.0f;
 
 	// Use this for initialization
-	void Awake () {
-        StartCoroutine("spawnPrefab");
+	void OnEnable () {
+        StartCoroutine(SpawnRoutine());
     }
 
-    IEnumerator spawnPrefab()
+    IEnumerator SpawnRoutine()
     {
         if (effect)
         {
