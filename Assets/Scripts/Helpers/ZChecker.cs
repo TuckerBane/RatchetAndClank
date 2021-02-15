@@ -9,7 +9,7 @@ public class ZChecker : MonoBehaviour
     {
         foreach(Transform tran in FindObjectsOfType<Transform>())
         {
-            if(Mathf.Abs(tran.position.z) > 0.05f && !tran.gameObject.TryGetComponent<IsZExempt>(out IsZExempt z))
+            if(Mathf.Abs(tran.position.z) > 0.1f && !tran.gameObject.TryGetComponent<IsZExempt>(out IsZExempt z) && tran.gameObject.GetComponentInParent<IsZExempt>() == null)
             {
                 Debug.Log("This game object has a non-zero z value and no IsZExempt component", tran.gameObject);
             }

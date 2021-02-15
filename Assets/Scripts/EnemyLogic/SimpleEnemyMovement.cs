@@ -6,6 +6,7 @@ public class SimpleEnemyMovement : MonoBehaviour {
 
     public float speed = 2.0f;
     public float directionSwitchRate = 3.0f;
+    public float autoChargeRange = 10.0f;
     private Timer directionSwitchTimer;
     private int directionEnum = 0;
 
@@ -14,13 +15,15 @@ public class SimpleEnemyMovement : MonoBehaviour {
         if(directionSwitchTimer.isDone())
         {
             directionSwitchTimer = new Timer(directionSwitchRate);
-            directionEnum += Random.Range(1, 2);
+            directionEnum += Random.Range(0, 2);
         }
 
 
         if (!GetComponent<EnemyVision>().canSeeTarget)
             return Vector3.zero;
         Vector3 toPlayer = FindObjectOfType<PlayerMovement>().transform.position - transform.position;
+        if (toPlayer.magnitude > autoChargeRange)
+            directionEnum = 0;
         toPlayer.Normalize();
         switch(directionEnum % 3)
         {

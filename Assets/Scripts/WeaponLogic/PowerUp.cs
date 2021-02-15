@@ -18,7 +18,7 @@ public class PowerUp : MonoBehaviour
     {
         if (other.TryGetComponent(out PlayerShooting playerShooting))
         {
-            playerShooting.AddLingeringEffect(new LingeringBulletMod(mod, new Timer(duration)));
+            playerShooting.AddLingeringEffect(new LingeringBulletMod(mod, new Timer(duration), GetComponent<AddIcon>()?.IconArchetype));
             Destroy(gameObject);
         }
     }

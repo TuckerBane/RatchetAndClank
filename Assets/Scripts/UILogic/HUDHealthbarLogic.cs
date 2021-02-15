@@ -14,11 +14,10 @@ public class HUDHealthbarLogic : MonoBehaviour
         var playerHealth = FindObjectOfType<IsPlayer>().GetComponent<Health>();
         var canvasTransform = transform.parent.GetComponent<RectTransform>();
         Vector3 iconSize = heart.GetComponent<RectTransform>().sizeDelta;
-        Vector3 curPos = canvasTransform.position.Times(-0.25f) + iconSize.Times(0.25f);
-        curPos = Vector3.zero;
+        Vector3 curPos =  iconSize.Times(0.5f);
         for(int i = 0; i < playerHealth.startingHealth; ++i)
         {
-            GameObject newHeart = Instantiate(heart, this.GetComponent<RectTransform>());
+            GameObject newHeart = Instantiate(heart, GetComponent<RectTransform>());
             newHeart.GetComponent<RectTransform>().position = curPos;
             curPos.x = curPos.x + iconSize.x;
         }

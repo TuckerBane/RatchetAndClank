@@ -8,6 +8,8 @@ public class HeavyBullets : BulletComponentBase
     public float speedMod = 0.5f;
     public AnimationCurve pushSpeedCurve = AnimationCurve.Constant(0, 1, 1);
 
+    public int bonusDamage = 5;
+
     private Vector3 oldVelocity;
 
     public override void BulletDie(Collision killedBy)
@@ -18,7 +20,12 @@ public class HeavyBullets : BulletComponentBase
         }
     }
 
-    public void FixedUpdate()
+    public override void InitializeWeaponComponents()
+    {
+        GetComponentInParent<BulletLogic>().damage += bonusDamage;
+    }
+
+        public void FixedUpdate()
     {
         oldVelocity = GetComponentInParent<Rigidbody>().velocity;
     }

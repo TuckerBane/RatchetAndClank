@@ -14,6 +14,12 @@ public static class VectorHelpers {
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         return q;
     }
+    public static float AsAngle2D(this Vector3 vec)
+    {
+        float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+        return angle;
+    }
+
 
     public static float DistanceBetween(Vector3 t1, Vector3 t2)
     {

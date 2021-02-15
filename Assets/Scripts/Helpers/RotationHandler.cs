@@ -24,4 +24,19 @@ public class RotationHandler : MonoBehaviour
             transform.rotation *= rot;
         transform.rotation *= baseValue;
     }
+
+    public Quaternion GetCurrentRotation() 
+    {
+        Quaternion result = Quaternion.identity;
+        foreach (Quaternion rot in rotations.Values)
+            result *= rot;
+        return result;
+    }
+
+    public float GetCurrentAngle2D()
+    {
+        Quaternion rotation = GetCurrentRotation();
+        return rotation.eulerAngles.z;
+    }
+
 }

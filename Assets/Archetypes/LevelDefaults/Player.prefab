@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33645220052189194}
   - component: {fileID: 23424609979716834}
   - component: {fileID: 65007865037957306}
+  - component: {fileID: 2023454060}
   m_Layer: 11
   m_Name: Nose
   m_TagString: Untagged
@@ -89,10 +90,22 @@ BoxCollider:
   m_GameObject: {fileID: 1639152815196160}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2023454060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639152815196160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e47827ae4a4e14292ccbc021f7a0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1764061723374594
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,11 +256,13 @@ MonoBehaviour:
   shotCooldown: 0.5
   versionTracker: {fileID: 11400000, guid: aaa5548041c72ea48bff13bc85a8927e, type: 2}
   bullet: {fileID: 1011264083625362, guid: 6169fd154ff55104aabd834a8a864013, type: 3}
+  baseMode: {fileID: 0}
   weaponSwapCooldown:
     startTime: 0
     duration: 0
   lingeringEffectDuration: 3
-  allowMultipleLingeringEffects: 0
+  allowMultipleLingeringEffects: 1
+  allowWeaponSwap: 0
   defualtEffects:
     fireRateMod: 1
   currentEffects:
@@ -264,13 +279,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca79509eace5434f9580cbe7399d7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   canBeInvincible: 1
-  ignoreDamageValues: 0
+  ignoreDamageValues: 1
   invincibilityCooldown:
     startTime: 0
     duration: 3
-  health: 50
-  startingHealth: 50
+  health: 5
+  startingHealth: 5
   pointValue: 0
   damagedColor: {r: 1, g: 1, b: 0, a: 0}
   damagedColorFlashCurve:
@@ -353,6 +369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1966744920238193428}
   - component: {fileID: 7300248922967888660}
+  - component: {fileID: 168963856}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -388,6 +405,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e22a9f10de2194478b928c4c3fea96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &168963856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650861074061932578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e47827ae4a4e14292ccbc021f7a0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5775632105757682311
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +430,7 @@ GameObject:
   - component: {fileID: 8158235201788442654}
   - component: {fileID: 6452815006337941232}
   - component: {fileID: 76749024968629728}
+  - component: {fileID: 1006992903}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -495,6 +525,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bdd9d221a60dd47a8e138e0a08065f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1006992903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775632105757682311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e47827ae4a4e14292ccbc021f7a0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6028136087156521966
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +550,7 @@ GameObject:
   - component: {fileID: 3515840137804789335}
   - component: {fileID: 325504303258855403}
   - component: {fileID: 1628360329057852701}
+  - component: {fileID: 1831624567}
   m_Layer: 0
   m_Name: Forground
   m_TagString: Untagged
@@ -600,5 +643,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36a525e69f3eb394d8a524d9048c438e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1831624567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6028136087156521966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e47827ae4a4e14292ccbc021f7a0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

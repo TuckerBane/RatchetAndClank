@@ -16,6 +16,7 @@ public class CameraFollowPlayer : MonoBehaviour {
         Vector3 myFlatPos = transform.position;
         myFlatPos.z = 0;
         Vector3 toPlayer = (player.transform.position - myFlatPos);
+        toPlayer.z = 0;
         if (toPlayer.magnitude > followDistance)
         {
             transform.position += toPlayer.normalized * (toPlayer.magnitude - followDistance);

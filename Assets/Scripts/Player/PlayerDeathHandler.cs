@@ -18,9 +18,13 @@ public class PlayerDeathHandler : MonoBehaviour
 
     private IEnumerator DieVerySoon()
     {
+        var player = FindObjectOfType<IsPlayer>().gameObject;
+        player.GetComponent<PlayerMovement>().enabled = false;
+        player.GetComponent<PlayerShooting>().enabled = false;
+
         yield return new WaitForSeconds(2.0f);
+
         int scene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
-        
     }
 }

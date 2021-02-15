@@ -13,24 +13,28 @@ MonoBehaviour:
   m_Name: WeaponVerionTracker
   m_EditorClassIdentifier: 
   weaponVersions:
-  - bulletBase: {fileID: 0}
+  - bulletBase: {fileID: 8440518413369717267, guid: e1f054c4583e22145b8819f4567167ce,
+      type: 3}
     array:
-    - {fileID: 1011264083625362, guid: 6169fd154ff55104aabd834a8a864013, type: 3}
+    - {fileID: 3512601841439409152, guid: 5bb5713d284aa484596791516f19c83b, type: 3}
     - {fileID: 1161238845318922, guid: 1467f07ad9b771f45b0e6d9e95440006, type: 3}
-  - bulletBase: {fileID: 0}
+  - bulletBase: {fileID: 867066865953514454, guid: 5e657d1a4aa906c47b33edf7ecba5b6c,
+      type: 3}
     array:
-    - {fileID: 1446099173215368, guid: d3a576be2ddb4f64d9cc29a5d4bad201, type: 3}
+    - {fileID: 4608636124712179626, guid: ffb3ef4e1b4f6c24fb06342be220d11d, type: 3}
     - {fileID: 1560563069739858, guid: 2bf3b36d535fc464fb5a4b36d5b4b829, type: 3}
-  - bulletBase: {fileID: 0}
+  - bulletBase: {fileID: 8874526090903840966, guid: 59008805f3651d7478fc1bc9a5d39290,
+      type: 3}
     array:
-    - {fileID: 1826240499825814, guid: 27130fadab4de74418b491c070aef141, type: 3}
+    - {fileID: 287506583969090413, guid: 82c0fb9346d44194d904c06a52519ab0, type: 3}
     - {fileID: 1833495469832624, guid: 57fb473eafd1f8342bf2bba23d8c9b16, type: 3}
   - bulletBase: {fileID: 5219997135607619050, guid: bd6bfe1741afd984ebcb935116131d57,
       type: 3}
     array:
     - {fileID: 2119437463531954236, guid: 57a1c971a97bb77459676013547e0655, type: 3}
     - {fileID: 1958603252056594, guid: bedb1c1ac76541f459c89c249d181b1d, type: 3}
-  - bulletBase: {fileID: 0}
+  - bulletBase: {fileID: 1405204638586950, guid: 501ab40473213a746a2866f5722eb68b,
+      type: 3}
     array:
-    - {fileID: 1405204638586950, guid: 501ab40473213a746a2866f5722eb68b, type: 3}
+    - {fileID: 0}
     - {fileID: 0}

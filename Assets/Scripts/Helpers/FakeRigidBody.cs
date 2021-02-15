@@ -21,6 +21,15 @@ public class MovementEffect
         this.id = id;
     }
 
+    public MovementEffect(VelocityCalculator velocityCalculator, string id, float duration = float.MaxValue)
+    {
+        this.velocity = Vector3.zero;
+        this.duration = new Timer(duration);
+        this.powerCurve = null;
+        this.velocityCalculator = velocityCalculator;
+        this.id = id;
+    }
+
     public bool IsDone()
     {
         return duration.isDone();

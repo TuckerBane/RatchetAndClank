@@ -15,6 +15,17 @@ public class RFX4_CameraShake : MonoBehaviour
     [HideInInspector]
     public bool canUpdate;
 
+    private bool isRunning = false;
+
+    public void MyPlayShake()
+    {
+        if (!isRunning)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Shake());
+        }
+    }
+
     void PlayShake()
     {
         StopAllCoroutines();
@@ -43,6 +54,7 @@ public class RFX4_CameraShake : MonoBehaviour
 
     IEnumerator Shake()
     {
+        isRunning = true;
         var elapsed = 0.0f;
         var camT = Camera.main.transform;
         var originalCamRotation = camT.rotation.eulerAngles;
@@ -70,5 +82,6 @@ public class RFX4_CameraShake : MonoBehaviour
 
             yield return null;
         }
+        isRunning = false;
     }
 }

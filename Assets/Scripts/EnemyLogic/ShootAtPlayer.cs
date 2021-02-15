@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyVision))]
 public class ShootAtPlayer : MonoBehaviour {
 
     public float shotInterval = 3.0f;
@@ -17,10 +18,8 @@ public class ShootAtPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(shotCooldown.isDone() && GetComponent<EnemyVision>().canSeeTarget)
+		if(GetComponent<EnemyVision>().canSeeTarget && shotCooldown.resetIfDone())
         {
-            shotCooldown = new Timer(shotInterval);
-
             Vector3 toTarget = target.transform.position - transform.position;
             toTarget.z = 0;
             toTarget.Normalize();
